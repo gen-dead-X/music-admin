@@ -14,7 +14,7 @@ export default function SignInUpLayout({
 
   return (
     <main className="flex flex-col justify-center items-center h-screen w-screen page-container-main">
-      <div className="lg:max-w-[40%] max-h-[70%]">{children}</div>
+      <div className="h-full">{children}</div>
     </main>
   );
 }
