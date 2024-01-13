@@ -1,0 +1,54 @@
+// Colors
+$blue: #32325d;
+$gray: #f5f6fa;
+$dark-gray: #6b7c93;
+$white: #fff;
+$border-rounded: 6px;
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.popup-button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: $white;
+
+  border-radius: $border-rounded;
+  padding: 1em 3em;
+  background-size: 300% auto;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  background-image: linear-gradient(
+    to right,
+    #0066ff 0%,
+    #64f6e7 50%,
+    #07983a 100%
+  );
+  transition: 0.6s;
+
+  &:hover {
+    background-position: right center;
+  }
+
+  &:active {
+    animation: bg-flow 1s infinite linear;
+  }
+
+  @keyframes bg-flow {
+    0% {
+      background-position: right center;
+    }
+    50% {
+      background-position: center left;
+    }
+    100% {
+      background-position: right center;
+    }
+  }
+}

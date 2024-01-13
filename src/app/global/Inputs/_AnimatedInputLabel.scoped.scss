@@ -1,0 +1,37 @@
+.input-container {
+  border-radius: 0.4rem;
+  position: relative;
+  font-size: 1.2rem;
+  input {
+    border-radius: 1rem;
+    background-color: transparent;
+    transition: all 0.3s;
+    padding: 1rem;
+    outline: none;
+    position: relative;
+
+    &:focus {
+      border: 2px solid rgb(0, 97, 224);
+    }
+    &:not(:placeholder-shown) ~ label,
+    &:focus ~ label {
+      top: 0;
+      left: 10px;
+      padding: 0 2px;
+      transition: 0.3s;
+      font-size: 16px;
+      color: rgb(133, 133, 133);
+      font-weight: 500;
+    }
+  }
+  label {
+    font-weight: 300;
+    color: gray;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    pointer-events: none;
+    transition: 0.3s;
+  }
+}

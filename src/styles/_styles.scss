@@ -1,0 +1,48 @@
+@import "../styles/_variables.scss";
+
+body {
+  font-family: "Poppins", sans-serif;
+
+  // Set default variables based on user preference (dark or light mode)
+  --primary-color: var(--primary-color-light);
+  --secondary-color: var(--secondary-color-light);
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+
+  &.dark {
+    --primary-color: var(--primary-color-dark);
+    --secondary-color: var(--secondary-color-dark);
+    --background-color: var(--background-color-dark);
+    --text-color: var(--text-color-dark);
+
+    .page-container-main {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("https://images.unsplash.com/photo-1594623930572-300a3011d9ae?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    }
+  }
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.page-container-main {
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  text-shadow: 1rem 0.5rem 1rem rgba(0, 0, 0, 0.537);
+
+  h4,
+  p {
+    padding: 0 5px;
+    background: -webkit-linear-gradient(
+      -45deg,
+      rgb(255, 255, 255),
+      rgb(255, 255, 255),
+      rgb(151, 151, 151)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: none;
+  }
+}
