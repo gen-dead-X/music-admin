@@ -1,47 +1,70 @@
-import { InputHTMLAttributes, useId } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
-import './_AnimatedInputLabel.scoped.scss';
+import { InputHTMLAttributes, useEffect, useId, useState } from "react";
+import { useController, useFormContext } from "react-hook-form";
+import { IoEyeOutline } from "react-icons/io5";
+
+import "./_AnimatedInputLabel.scoped.scss";
 
 type FormInputProps = InputHTMLAttributes<HTMLInputElement> & {
+  showPasswordButton?: boolean;
   label?: string;
   name: string;
 };
 
 export default function AnimatedInputLabel({
+  showPasswordButton,
   label,
   ...inputProps
 }: FormInputProps) {
   const id = useId();
+  const [showPassword, setShowPassword] = useState(false);
   const { register, control } = useFormContext();
   const { fieldState } = useController({
     control,
     name: inputProps.name,
   });
 
+  useEffect(() => {
+    console.log(showPassword);
+  }, [showPassword]);
+
   return (
-    <div className='relative'>
-      <div className='input-container '>
+    <div className="relative">
+      <div className="input-container ">
+        <button
+          onClick={() => setShowPassword(!showPassword)}
+          type="button"
+          className={
+            (showPasswordButton ? " block " : " hidden ") +
+            "absolute right-5 top-[50%] translate-y-[-50%] z-50"
+          }
+        >
+          <IoEyeOutline className={" "} />
+        </button>
         <input
           {...inputProps}
           className={
             inputProps.className +
-            (fieldState.error?.message ? ' border-red-500 ' : '')
+            (fieldState.error?.message ? " border-red-500 " : "")
           }
           {...register(inputProps.name)}
           name={inputProps.name}
-          placeholder=''
-          autoComplete='on'
+          type={
+            (showPasswordButton && showPassword ? "text" : "password") ||
+            inputProps.type
+          }
+          placeholder=""
+          autoComplete="on"
           id={id}
         />
         <label
           htmlFor={id}
-          className='bg-white text-black dark:bg-[rgb(29,29,29)]  dark:text-white'
+          className="bg-white text-black dark:bg-[rgb(29,29,29)]  dark:text-white"
         >
-          {label ?? 'Type Here'}
+          {label}
         </label>
       </div>
       {fieldState.error?.message && (
-        <p className='absolute text-red-500'>{fieldState.error?.message}</p>
+        <p className="absolute text-red-500">{fieldState.error?.message}</p>
       )}
     </div>
   );

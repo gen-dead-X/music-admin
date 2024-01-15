@@ -14,7 +14,9 @@ export default function SignInUpLayout({
 
   return (
     <main className="flex flex-col justify-center items-center h-screen w-screen page-container-main">
-      <div className="h-full">{children}</div>
+      <div className="px-10 md:px-0 w-full h-full backdrop-blur-sm">
+        {children}
+      </div>
     </main>
   );
 }

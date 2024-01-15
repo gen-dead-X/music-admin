@@ -1,9 +1,16 @@
-export type LogInType = {
+export type RememberMe = {
+  rememberMe: string;
+};
+
+export type LogInType = RememberMe & {
   email: string;
   password: string;
 };
 
-export type SignUpType = LogInType & {
+export type SignUpType = {
+  email: string;
+  password: string;
+  name: string;
   phoneNumber: number;
   confirmPassword: string;
 };
