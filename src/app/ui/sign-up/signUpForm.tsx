@@ -10,7 +10,10 @@ import { ApiResponse, SignUpType } from '@/Types/User';
 import Link from 'next/link';
 import { REGISTER_USER_MUTATION } from '@/app/graphql/auth/auth.graphql';
 import { ApolloError, useMutation } from '@apollo/client';
-import { errorMessageToast } from '../global/toast/reactToastify';
+import {
+  errorMessageToast,
+  successMessageToast,
+} from '../global/toast/reactToastify';
 import { useRouter } from 'next/navigation';
 
 export default function SignUpForm() {
@@ -23,6 +26,7 @@ export default function SignUpForm() {
   const [registerUser, { loading }] = useMutation(REGISTER_USER_MUTATION, {
     onCompleted: ({ register }: { register: ApiResponse }) => {
       if (register.success) {
+        successMessageToast(register.message);
         router.push('/');
       } else {
         errorMessageToast(register.message);
