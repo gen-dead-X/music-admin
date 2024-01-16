@@ -1,29 +1,34 @@
-export type RememberMe = {
-  rememberMe: string;
-};
-
-export type LogInType = RememberMe & {
+export type LogInType = {
   email: string;
   password: string;
+  rememberMe: boolean;
 };
 
 export type SignUpType = {
   email: string;
   password: string;
   name: string;
-  phoneNumber: number;
+  phoneNumber: string;
   confirmPassword: string;
+};
+
+export type ApiResponse = {
+  success: boolean;
+  message: string;
 };
 
 export type Profile = {
   userType: string;
-  name?: string;
+  name: string;
   email: string;
-  phoneNumber?: number;
+  phoneNumber: string;
+  id: string;
 };
 
-export type LoginResponse = {
-  userDetails: Profile;
-  accessToken: string;
-  refreshToken: string;
+export type LoginResponse = ApiResponse & {
+  data: {
+    userDetails: Profile;
+    accessToken: string;
+    refreshToken: string;
+  };
 };

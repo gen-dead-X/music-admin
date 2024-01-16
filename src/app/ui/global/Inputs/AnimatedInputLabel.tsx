@@ -1,8 +1,8 @@
-import { InputHTMLAttributes, useEffect, useId, useState } from "react";
-import { useController, useFormContext } from "react-hook-form";
-import { IoEyeOutline } from "react-icons/io5";
+import { InputHTMLAttributes, useId, useState } from 'react';
+import { useController, useFormContext } from 'react-hook-form';
+import { IoEyeOutline } from 'react-icons/io5';
 
-import "./_AnimatedInputLabel.scoped.scss";
+import './_AnimatedInputLabel.scoped.scss';
 
 type FormInputProps = InputHTMLAttributes<HTMLInputElement> & {
   showPasswordButton?: boolean;
@@ -23,10 +23,6 @@ export default function AnimatedInputLabel({
     name: inputProps.name,
   });
 
-  useEffect(() => {
-    console.log(showPassword);
-  }, [showPassword]);
-
   return (
     <div className="relative">
       <div className="input-container ">
@@ -34,23 +30,24 @@ export default function AnimatedInputLabel({
           onClick={() => setShowPassword(!showPassword)}
           type="button"
           className={
-            (showPasswordButton ? " block " : " hidden ") +
-            "absolute right-5 top-[50%] translate-y-[-50%] z-50"
+            (showPasswordButton ? ' block ' : ' hidden ') +
+            'absolute right-5 top-[50%] z-50 translate-y-[-50%]'
           }
         >
-          <IoEyeOutline className={" "} />
+          <IoEyeOutline className={' '} />
         </button>
         <input
           {...inputProps}
           className={
             inputProps.className +
-            (fieldState.error?.message ? " border-red-500 " : "")
+            (fieldState.error?.message ? ' border-red-500 ' : '')
           }
           {...register(inputProps.name)}
           name={inputProps.name}
           type={
-            (showPasswordButton && showPassword ? "text" : "password") ||
-            inputProps.type
+            (showPasswordButton && showPassword
+              ? 'text'
+              : !inputProps.type && ' password') || inputProps.type
           }
           placeholder=""
           autoComplete="on"

@@ -55,10 +55,10 @@ body.dark {
   &:hover {
     background-position: right center;
   }
+}
 
-  &:active {
-    animation: bg-flow 1s infinite linear;
-  }
+.submit-animation {
+  animation: bg-flow 1s infinite linear;
 
   @keyframes bg-flow {
     0% {

@@ -78,7 +78,7 @@ export default function SignUpForm() {
             />
             <button type="submit">
               <SubmitButton className="relative rounded-full">
-                Log In
+                Sign Up
               </SubmitButton>
             </button>
           </div>

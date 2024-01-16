@@ -1,62 +1,64 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React from 'react';
 import AnimatedInputLabel from '../global/Inputs/AnimatedInputLabel';
 import SubmitButton from '../global/buttons/SubmitButton';
-import { signInValidationSchema } from '@/validators/user/auth';
+import { signUpValidationSchema } from '@/validators/user/auth';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { LogInType, LoginResponse } from '@/Types/User';
+import { ApiResponse, SignUpType } from '@/Types/User';
 import Link from 'next/link';
-import { LocalStorageKeys } from '@/enums/globalEnum';
-import { useMutation } from '@apollo/client';
-import { SIGN_IN_USER_MUTATION } from '@/app/graphql/auth/auth.graphql';
+import { REGISTER_USER_MUTATION } from '@/app/graphql/auth/auth.graphql';
+import { ApolloError, useMutation } from '@apollo/client';
 import { errorMessageToast } from '../global/toast/reactToastify';
 import { useRouter } from 'next/navigation';
-import { UserContext } from '@/context/User/UserContext';
 
-export default function SignInForm() {
-  const { setProfile } = useContext(UserContext);
+export default function SignUpForm() {
   const router = useRouter();
-  const form = useForm<LogInType>({
-    resolver: yupResolver(signInValidationSchema),
+
+  const form = useForm<SignUpType>({
+    resolver: yupResolver(signUpValidationSchema),
   });
 
-  const [loginInput, { loading }] = useMutation(SIGN_IN_USER_MUTATION, {
-    onCompleted: ({ login }: { login: LoginResponse }) => {
-      if (login.success) {
-        localStorage.setItem('accessToken', login.data.accessToken);
-        localStorage.setItem('refreshToken', login.data.refreshToken);
-
-        setProfile(login.data.userDetails);
-        router.push('/dashboard');
+  const [registerUser, { loading }] = useMutation(REGISTER_USER_MUTATION, {
+    onCompleted: ({ register }: { register: ApiResponse }) => {
+      if (register.success) {
+        router.push('/');
       } else {
-        errorMessageToast(login.message);
+        errorMessageToast(register.message);
       }
     },
-    onError(error) {
+    onError: (error: ApolloError) => {
       errorMessageToast(error.message);
     },
   });
 
-  const handleSignIn = async (formValue: LogInType) => {
-    loginInput({ variables: formValue });
+  const handleSignUp = (formValue: SignUpType) => {
+    registerUser({ variables: formValue });
   };
 
   return (
     <div className="m-auto flex h-full w-full flex-col items-center justify-center py-10 sm:w-[30rem] md:w-[40rem] lg:max-w-[60rem] xl:w-[40%] xl:py-16">
       <FormProvider {...form}>
         <form
-          onSubmit={e => form.handleSubmit(handleSignIn)(e)}
+          onSubmit={e => form.handleSubmit(handleSignUp)(e)}
           className="xs:w-full flex w-full flex-col justify-between gap-10 overflow-auto rounded-xl bg-white px-5 py-10 dark:bg-[rgb(29,29,29)] sm:px-10 xl:px-20 xl:py-20"
         >
           <div className="">
             <h1 className="bg-radial-red text-3xl font-semibold text-[#333] dark:text-gray-200">
-              Sign in
+              Sign Up
             </h1>
-            <p className="mt-5 text-[#666]">To access your account</p>
+            <p className="mt-5 text-[#666]">
+              And dive into the world of Artists
+            </p>
           </div>
           <div className="flex flex-col gap-8">
+            <AnimatedInputLabel
+              name="name"
+              label="Name"
+              className="w-full border-[2px] "
+              type="text"
+            />
             <AnimatedInputLabel
               name="email"
               label="Email"
@@ -64,37 +66,42 @@ export default function SignInForm() {
               type="text"
             />
             <AnimatedInputLabel
+              name="phoneNumber"
+              label="Phone"
+              className="w-full border-[2px] "
+              type="text"
+            />
+            <AnimatedInputLabel
               name="password"
               label="Password"
               type="password"
+              showPasswordButton
+              className="w-full border-[2px]"
+            />
+            <AnimatedInputLabel
+              name="confirmPassword"
+              label="Confirm Password"
+              type="password"
+              showPasswordButton
               className="w-full border-[2px]"
             />
             <button type="submit">
               <SubmitButton
                 className={
-                  'relative rounded-full ' + (loading && ' submit-animation ')
+                  'relative rounded-full ' + (loading && ' submit-animation')
                 }
               >
-                Log In
+                Sign Up
               </SubmitButton>
             </button>
           </div>
-          <div className="flex items-center gap-2 rounded-full">
-            <input
-              type="checkbox"
-              id="rememberMe"
-              {...form.register(LocalStorageKeys.REMEMBER_ME)}
-              className="h-5 w-5"
-            />
-            <label htmlFor="loginRememberMe">Remember me</label>
-          </div>
-          <div className="flex items-center gap-5">
-            <span>Already Added? </span>
+          <div className="flex flex-col items-start gap-5 md:flex-row md:items-center ">
+            <span>Already a Registered Member? </span>
             <Link
               className="rounded-full bg-black p-2 px-5 text-white hover:bg-gray-500 dark:bg-gray-300 dark:text-black "
-              href={'/sign-up'}
+              href={'/'}
             >
-              Sign up
+              Sign In
             </Link>
           </div>
           <p>
