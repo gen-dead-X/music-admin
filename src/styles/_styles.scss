@@ -1,0 +1,33 @@
+@import "../styles/_variables.scss";
+
+body {
+  font-family: "Poppins", sans-serif;
+
+  // Set default variables based on user preference (dark or light mode)
+  --primary-color: var(--primary-color-light);
+  --secondary-color: var(--secondary-color-light);
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+
+  &.dark {
+    --primary-color: var(--primary-color-dark);
+    --secondary-color: var(--secondary-color-dark);
+    --background-color: var(--background-color-dark);
+    --text-color: var(--text-color-dark);
+
+    .page-container-main {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("https://images.pexels.com/photos/1587927/pexels-photo-1587927.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    }
+  }
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.page-container-main {
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.151), rgba(0, 0, 0, 0.101)),
+    url("https://images.pexels.com/photos/2426085/pexels-photo-2426085.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+}

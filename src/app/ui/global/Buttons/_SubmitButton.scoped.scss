@@ -1,0 +1,74 @@
+// adial-gradient(circle at center,#FF385C 0%,#E61E4D 27.5%,#E31C5F 40%,#D70466 57.5%,#BD1E59 75%,#BD1E59 100%)
+
+// Colors
+$blue: #32325d;
+$gray: #f5f6fa;
+$dark-gray: #6b7c93;
+$white: #fff;
+$border-rounded: 6px;
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body.dark {
+  .submit-popup-button {
+    color: rgb(35, 35, 35);
+    background-image: linear-gradient(
+      to right,
+      #ffffff 0%,
+      #616161 50%,
+      #cfcfcf 100%
+    );
+  }
+}
+
+.submit-popup-button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: $white;
+  padding: 1em 3em;
+  background-size: 300% auto;
+  box-shadow:
+    0 4px 6px rgba(50, 50, 93, 0.11),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  background-image: linear-gradient(
+    to right,
+    #111111 0%,
+    #898989 50%,
+    #1d1d1d 100%
+  );
+  // background-image: linear-gradient(
+  //   to right,
+  //   #fa1c45 0%,
+  //   #ff8dd1 50%,
+  //   #d4163c 100%
+  // );
+  transition: 0.6s;
+
+  &:hover {
+    background-position: right center;
+  }
+}
+
+.submit-animation {
+  animation: bg-flow 1s infinite linear;
+
+  @keyframes bg-flow {
+    0% {
+      background-position: right center;
+    }
+    50% {
+      background-position: center left;
+    }
+    100% {
+      background-position: right center;
+    }
+  }
+}

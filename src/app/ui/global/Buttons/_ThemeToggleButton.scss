@@ -1,0 +1,9 @@
+.shadow-inner-groove {
+  box-shadow: inset 0px 0px 5px 0.7px rgba(0, 0, 0, 0.577);
+}
+
+.dark {
+  .shadow-inner-groove {
+    box-shadow: inset 0px 0px 2px 0.7px rgba(176, 176, 176, 0.237);
+  }
+}
