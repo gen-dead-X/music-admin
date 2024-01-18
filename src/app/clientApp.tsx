@@ -6,7 +6,9 @@ import { UserContextProvider } from '@/context/User/UserContext';
 import { ApolloProvider } from '@apollo/client';
 import { HydrationBoundary, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
+import MainSuspenseLoader from './ui/global/loaders/mainSuspenseLoader';
 
 export default function ClientApp({
   children,
@@ -19,7 +21,11 @@ export default function ClientApp({
         <QueryClientProvider client={queryClient}>
           <HydrationBoundary>
             <UserContextProvider>
-              <main>{children}</main>
+              <main>
+                <Suspense fallback={<MainSuspenseLoader />}>
+                  {children}
+                </Suspense>
+              </main>
               <ToastContainer autoClose={3000} />
             </UserContextProvider>
           </HydrationBoundary>
