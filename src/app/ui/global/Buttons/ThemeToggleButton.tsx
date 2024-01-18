@@ -30,23 +30,23 @@ export default function ThemeToggleButton() {
   }, [isDark]);
 
   return (
-    <div className='theme-button-container'>
+    <div className="theme-button-container">
       <button
         onClick={() => setIsDark(!isDark)}
-        className='shadow-inner-groove relative h-10 w-16 rounded-3xl border-[3px] bg-gray-100 shadow-gray-200 transition-all duration-200 dark:bg-gray-800 dark:shadow-black'
+        className="shadow-inner-groove duration-400 relative h-10 w-16 rounded-3xl border-[3px] bg-gray-100 shadow-gray-200 transition-all dark:bg-gray-800 dark:shadow-black"
       >
         <div
           className={
             'absolute top-[5px] h-6 w-6 rounded-full transition-all  ' +
             (!isDark
-              ? 'left-[5px] border border-yellow-500 bg-yellow-400 text-black shadow-2xl'
-              : 'right-[5px] border bg-gray-700 text-white shadow-2xl')
+              ? 'translate-x-[20%] border border-yellow-500 bg-yellow-400 text-black shadow-2xl'
+              : 'translate-x-[120%] border bg-gray-700 text-white shadow-2xl')
           }
         >
           {!isDark ? (
-            <LuSunMedium className='h-full w-full p-1 ' />
+            <LuSunMedium className="h-full w-full p-1 " />
           ) : (
-            <BsFillCloudMoonFill className='h-full w-full p-1' />
+            <BsFillCloudMoonFill className="h-full w-full p-1" />
           )}
         </div>
       </button>

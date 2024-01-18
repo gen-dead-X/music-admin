@@ -1,6 +1,7 @@
 'use client';
 
 import checkUserPreferredTheme from '@/helpers/themeHelpers';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function SignInUpLayout({
@@ -8,7 +9,15 @@ export default function SignInUpLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+
   useEffect(() => {
+    console.log('unmounted');
+    if (localStorage.getItem('accessToken')) {
+      console.log('updating');
+      router.push('/dashboard');
+    }
+
     checkUserPreferredTheme();
   }, []);
 

@@ -1,0 +1,36 @@
+.main-content {
+  background: linear-gradient(
+    90deg,
+    rgb(255, 255, 255) 0%,
+    rgb(184, 184, 184) 100%
+  );
+}
+.sidebar-main {
+  background: linear-gradient(180deg, rgb(254, 254, 254) 0%, #b3b3b3 100%);
+}
+.header-main {
+  z-index: 50;
+  box-shadow: 0rem 0rem 1rem 0rem rgba(0, 0, 0, 0.277);
+}
+.footer-main {
+  box-shadow: 0rem 0rem 1rem 0rem rgba(0, 0, 0, 0.277);
+}
+.header-main,
+.footer-main {
+  background: linear-gradient(45deg, rgb(255, 255, 255) 0%, #b3b3b3 100%);
+}
+
+body.dark {
+  .main-content {
+    background: linear-gradient(90deg, rgb(16, 16, 16) 0%, #232323 100%);
+  }
+
+  .sidebar-main {
+    background: linear-gradient(135deg, rgb(0, 0, 0) 0%, #282828 100%);
+  }
+
+  .header-main,
+  .footer-main {
+    background: linear-gradient(135deg, rgb(17, 17, 17) 0%, #282828 100%);
+  }
+}

@@ -8,7 +8,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ApiResponse, SignUpType } from '@/Types/User';
 import Link from 'next/link';
-import { REGISTER_USER_MUTATION } from '@/app/graphql/auth/auth.graphql';
+import { REGISTER_USER_MUTATION } from '@/graphql/auth/auth.graphql';
 import { ApolloError, useMutation } from '@apollo/client';
 import {
   errorMessageToast,

@@ -10,8 +10,11 @@ import { LogInType, LoginResponse } from '@/Types/User';
 import Link from 'next/link';
 import { LocalStorageKeys } from '@/enums/globalEnum';
 import { useMutation } from '@apollo/client';
-import { SIGN_IN_USER_MUTATION } from '@/app/graphql/auth/auth.graphql';
-import { errorMessageToast } from '../global/toast/reactToastify';
+import { SIGN_IN_USER_MUTATION } from '@/graphql/auth/auth.graphql';
+import {
+  errorMessageToast,
+  successMessageToast,
+} from '../global/toast/reactToastify';
 import { useRouter } from 'next/navigation';
 import { UserContext } from '@/context/User/UserContext';
 
@@ -30,8 +33,9 @@ export default function SignInForm() {
 
         setProfile(login.data.userDetails);
         router.push('/dashboard');
+        successMessageToast(login.message ?? 'Welcome Back!');
       } else {
-        errorMessageToast(login.message);
+        errorMessageToast(login?.message ?? '');
       }
     },
     onError(error) {

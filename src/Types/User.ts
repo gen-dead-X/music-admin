@@ -14,10 +14,11 @@ export type SignUpType = {
 
 export type ApiResponse = {
   success: boolean;
-  message: string;
+  message?: string;
 };
 
 export type Profile = {
+  username: string;
   userType: string;
   name: string;
   email: string;
@@ -31,4 +32,8 @@ export type LoginResponse = ApiResponse & {
     accessToken: string;
     refreshToken: string;
   };
+};
+
+export type ProfileResponse = ApiResponse & {
+  data: Profile;
 };
