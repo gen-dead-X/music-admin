@@ -19,8 +19,8 @@ export default function AnimatedInputLabel({
   });
 
   return (
-    <div className='relative'>
-      <div className='input-container '>
+    <div className="relative w-full">
+      <div className="input-container ">
         <input
           {...inputProps}
           className={
@@ -29,19 +29,19 @@ export default function AnimatedInputLabel({
           }
           {...register(inputProps.name)}
           name={inputProps.name}
-          placeholder=''
-          autoComplete='on'
+          placeholder=""
+          autoComplete="on"
           id={id}
         />
         <label
           htmlFor={id}
-          className='bg-white text-black dark:bg-[rgb(29,29,29)]  dark:text-white'
+          className="bg-white text-black dark:bg-[rgb(29,29,29)]  dark:text-white"
         >
           {label ?? 'Type Here'}
         </label>
       </div>
       {fieldState.error?.message && (
-        <p className='absolute text-red-500'>{fieldState.error?.message}</p>
+        <p className="absolute text-red-500">{fieldState.error?.message}</p>
       )}
     </div>
   );

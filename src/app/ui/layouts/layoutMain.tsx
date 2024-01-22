@@ -38,7 +38,7 @@ export default function LayoutMain({
         </header>
 
         <main className="main-content overflow-y-auto p-4 md:flex-1">
-          <div className="h-[200vh]">
+          <div className="min-h-[100vh]">
             <Suspense fallback={<MainSuspenseLoader />}>{children}</Suspense>
           </div>
         </main>

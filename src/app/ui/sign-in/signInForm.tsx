@@ -43,7 +43,7 @@ export default function SignInForm() {
     },
   });
 
-  const handleSignIn = async (formValue: LogInType) => {
+  const handleSignIn = (formValue: LogInType) => {
     loginInput({ variables: formValue });
   };
 

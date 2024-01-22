@@ -1,0 +1,20 @@
+.mini-music-seek {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    z-index: 10;
+    content: '';
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    top: -4px;
+    left: -4px;
+    transition: all 0.5s;
+  }
+
+  &:hover::before {
+    transform: scale(1.5);
+    background: rgba(0, 209, 0, 0.367);
+  }
+}
